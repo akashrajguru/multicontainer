@@ -10,15 +10,15 @@ script:
   - docker run -e CI=true client:dev npm run test -- --coverage
 
 after_success:
-  - docker run -t akash14/multi-client ./client
-  - docker run -t akash14/multi-nginx ./nginx
-  - docker run -t akash14/multi-server ./server
-  - docker run -t akash14/multi-worker ./worker
+  - docker run -t client:prod ./client
+  - docker run -t nginx:prod ./nginx
+  - docker run -t server:prod ./server
+  - docker run -t worker:prod ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take images and push to docker hub
-  - docker push akash14/multi-client
-  - docker push akash14/multi-nginx
-  - docker push akash14/multi-server
-  - docker push akash14/multi-worker
-  
+  - docker push client:prod
+  - docker push nginx:prod
+  - docker push server:prod
+  - docker push worker:prod
+
