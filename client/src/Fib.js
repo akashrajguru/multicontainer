@@ -6,7 +6,7 @@ class Fib extends Component {
         seenIndexes: [],
         values: {},
         index: ''
-    }
+    };
 
     componentDidMount() {
         this.fetchValues();
